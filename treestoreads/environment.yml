@@ -1,0 +1,17 @@
+name: treetoreads
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - r-ape
+  - python=3.8
+  - jupyterlab
+  - r-phytools
+  - biopython
+  - iqtree
+  - r-irkernel
+  - seq-gen
+  - dendropy
+  - matplotlib
+  - art
