@@ -1,0 +1,3 @@
+[submodule "treestoreads/TreeToReads"]
+	path = treestoreads/TreeToReads
+	url = https://github.com/snacktavish/TreeToReads.git
