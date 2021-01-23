@@ -1,3 +1,5 @@
 /input/simulation.config
 *.egg-info
 /dist
+/output
+/phylogeny
