@@ -1,0 +1,444 @@
+~/workspace/thesis-data-simulation/jackalope/small/phylogeny ~/workspace/thesis-data-simulation/jackalope/small
+[20:02:17] This is snippy 4.6.0
+[20:02:17] Written by Torsten Seemann
+[20:02:17] Obtained from https://github.com/tseemann/snippy
+[20:02:17] Detected operating system: linux
+[20:02:17] Enabling bundled linux tools.
+[20:02:17] Found bwa - /home/CSCScience.ca/apetkau/miniconda3/envs/snippy/bin/bwa
+[20:02:17] Found bcftools - /home/CSCScience.ca/apetkau/miniconda3/envs/snippy/bin/bcftools
+[20:02:17] Found samtools - /home/CSCScience.ca/apetkau/miniconda3/envs/snippy/bin/samtools
+[20:02:17] Found java - /home/CSCScience.ca/apetkau/miniconda3/envs/snippy/bin/java
+[20:02:17] Found snpEff - /home/CSCScience.ca/apetkau/miniconda3/envs/snippy/bin/snpEff
+[20:02:17] Found samclip - /home/CSCScience.ca/apetkau/miniconda3/envs/snippy/bin/samclip
+[20:02:17] Found seqtk - /home/CSCScience.ca/apetkau/miniconda3/envs/snippy/bin/seqtk
+[20:02:17] Found parallel - /home/CSCScience.ca/apetkau/miniconda3/envs/snippy/bin/parallel
+[20:02:17] Found freebayes - /home/CSCScience.ca/apetkau/miniconda3/envs/snippy/bin/freebayes
+[20:02:17] Found freebayes-parallel - /home/CSCScience.ca/apetkau/miniconda3/envs/snippy/bin/freebayes-parallel
+[20:02:17] Found fasta_generate_regions.py - /home/CSCScience.ca/apetkau/miniconda3/envs/snippy/bin/fasta_generate_regions.py
+[20:02:17] Found vcfstreamsort - /home/CSCScience.ca/apetkau/miniconda3/envs/snippy/bin/vcfstreamsort
+[20:02:17] Found vcfuniq - /home/CSCScience.ca/apetkau/miniconda3/envs/snippy/bin/vcfuniq
+[20:02:17] Found vcffirstheader - /home/CSCScience.ca/apetkau/miniconda3/envs/snippy/bin/vcffirstheader
+[20:02:17] Found gzip - /bin/gzip
+[20:02:17] Found vt - /home/CSCScience.ca/apetkau/miniconda3/envs/snippy/bin/vt
+[20:02:17] Found snippy-vcf_to_tab - /home/CSCScience.ca/apetkau/miniconda3/envs/snippy/bin/snippy-vcf_to_tab
+[20:02:17] Found snippy-vcf_report - /home/CSCScience.ca/apetkau/miniconda3/envs/snippy/bin/snippy-vcf_report
+[20:02:17] Checking version: samtools --version is >= 1.7 - ok, have 1.11
+[20:02:17] Checking version: bcftools --version is >= 1.7 - ok, have 1.11
+[20:02:17] Checking version: freebayes --version is >= 1.1 - ok, have 1.3.2
+[20:02:17] Checking version: snpEff -version is >= 4.3 - ok, have 5.0
+[20:02:17] Checking version: bwa is >= 0.7.12 - ok, have 0.7.17
+[20:02:17] Using reference: /home/CSCScience.ca/apetkau/workspace/thesis-data-simulation/jackalope/small/input/genome.fasta
+[20:02:17] Treating reference as 'fasta' format.
+[20:02:17] Will use 6 CPU cores.
+[20:02:17] Using read file: /home/CSCScience.ca/apetkau/workspace/thesis-data-simulation/jackalope/small/output/SampleC_R1.fq.gz
+[20:02:17] Using read file: /home/CSCScience.ca/apetkau/workspace/thesis-data-simulation/jackalope/small/output/SampleC_R2.fq.gz
+[20:02:17] Creating folder: SampleC
+[20:02:17] Changing working directory: SampleC
+[20:02:17] Creating reference folder: reference
+[20:02:17] Extracting FASTA and GFF from reference.
+[20:02:17] Wrote 1 sequences to ref.fa
+[20:02:17] Wrote 0 features to ref.gff
+[20:02:17] Freebayes will process 11 chunks of 1000 bp, 6 chunks at a time.
+[20:02:17] Using BAM RG (Read Group) ID: SampleC
+[20:02:17] Running: samtools faidx reference/ref.fa 2>> snps.log
+[20:02:17] Running: bwa index reference/ref.fa 2>> snps.log
+[20:02:17] Running: mkdir -p reference/genomes && cp -f reference/ref.fa reference/genomes/ref.fa 2>> snps.log
+[20:02:17] Running: ln -sf reference/ref.fa . 2>> snps.log
+[20:02:17] Running: ln -sf reference/ref.fa.fai . 2>> snps.log
+[20:02:17] Running: mkdir -p reference/ref && gzip -c reference/ref.gff > reference/ref/genes.gff.gz 2>> snps.log
+[20:02:17] Running: bwa mem  -Y -M -R '@RG\tID:SampleC\tSM:SampleC' -t 6 reference/ref.fa /home/CSCScience.ca/apetkau/workspace/thesis-data-simulation/jackalope/small/output/SampleC_R1.fq.gz /home/CSCScience.ca/apetkau/workspace/thesis-data-simulation/jackalope/small/output/SampleC_R2.fq.gz | samclip --max 10 --ref reference/ref.fa.fai | samtools sort -n -l 0 -T /tmp --threads 2 -m 2666M | samtools fixmate -m --threads 2 - - | samtools sort -l 0 -T /tmp --threads 2 -m 2666M | samtools markdup -T /tmp --threads 2 -r -s - - > snps.bam 2>> snps.log
+[M::bwa_idx_load_from_disk] read 0 ALT contigs
+[M::process] read 616 sequences (154000 bp)...
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (0, 308, 0, 0)
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (488, 553, 615)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (234, 869)
+[M::mem_pestat] mean and std.dev: (550.29, 98.11)
+[M::mem_pestat] low and high boundaries for proper pairs: (107, 996)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+[samclip] samclip 0.4.0 by Torsten Seemann (@torstenseemann)
+[samclip] Loading: reference/ref.fa.fai
+[samclip] Found 1 sequences in reference/ref.fa.fai
+[M::mem_process_seqs] Processed 616 reads in 0.180 CPU sec, 0.031 real sec
+[main] Version: 0.7.17-r1188
+[main] CMD: bwa mem -Y -M -R @RG\tID:SampleC\tSM:SampleC -t 6 reference/ref.fa /home/CSCScience.ca/apetkau/workspace/thesis-data-simulation/jackalope/small/output/SampleC_R1.fq.gz /home/CSCScience.ca/apetkau/workspace/thesis-data-simulation/jackalope/small/output/SampleC_R2.fq.gz
+[main] Real time: 0.042 sec; CPU: 0.192 sec
+[samclip] Total SAM records 616, removed 3, allowed 18, passed 613
+[samclip] Header contained 3 lines
+[samclip] Done.
+[bam_sort_core] merging from 0 files and 2 in-memory blocks...
+[bam_sort_core] merging from 0 files and 2 in-memory blocks...
+[20:02:17] Running: samtools index snps.bam 2>> snps.log
+[20:02:17] Running: fasta_generate_regions.py reference/ref.fa.fai 1000 > reference/ref.txt 2>> snps.log
+[20:02:17] Running: freebayes-parallel reference/ref.txt 6 -p 2 -P 0 -C 2 -F 0.05 --min-coverage 10 --min-repeat-entropy 1.0 -q 13 -m 60 --strict-vcf   -f reference/ref.fa snps.bam > snps.raw.vcf 2>> snps.log
+[20:02:18] Running: bcftools view --include 'FMT/GT="1/1" && QUAL>=100 && FMT/DP>=10 && (FMT/AO)/(FMT/DP)>=0' snps.raw.vcf  | vt normalize -r reference/ref.fa - | bcftools annotate --remove '^INFO/TYPE,^INFO/DP,^INFO/RO,^INFO/AO,^INFO/AB,^FORMAT/GT,^FORMAT/DP,^FORMAT/RO,^FORMAT/AO,^FORMAT/QR,^FORMAT/QA,^FORMAT/GL' > snps.filt.vcf 2>> snps.log
+normalize v0.5
+
+options:     input VCF file                                  -
+         [o] output VCF file                                 -
+         [w] sorting window size                             10000
+         [n] no fail on reference inconsistency for non SNPs false
+         [q] quiet                                           false
+         [d] debug                                           false
+         [r] reference FASTA file                            reference/ref.fa
+
+
+stats: biallelic
+          no. left trimmed                      : 1
+          no. right trimmed                     : 16
+          no. left and right trimmed            : 0
+          no. right trimmed and left aligned    : 0
+          no. left aligned                      : 0
+
+       total no. biallelic normalized           : 17
+
+       multiallelic
+          no. left trimmed                      : 0
+          no. right trimmed                     : 0
+          no. left and right trimmed            : 0
+          no. right trimmed and left aligned    : 0
+          no. left aligned                      : 0
+
+       total no. multiallelic normalized        : 0
+
+       total no. variants normalized            : 17
+       total no. variants observed              : 33
+       total no. reference observed             : 0
+
+Time elapsed: 0.00s
+
+[20:02:18] Running: cp snps.filt.vcf snps.vcf 2>> snps.log
+[20:02:18] Running: /home/CSCScience.ca/apetkau/miniconda3/envs/snippy/bin/snippy-vcf_to_tab --gff reference/ref.gff --ref reference/ref.fa --vcf snps.vcf > snps.tab 2>> snps.log
+[20:02:18] Running: /home/CSCScience.ca/apetkau/miniconda3/envs/snippy/bin/snippy-vcf_extract_subs snps.filt.vcf > snps.subs.vcf 2>> snps.log
+[20:02:18] Running: bcftools convert -Oz -o snps.vcf.gz snps.vcf 2>> snps.log
+[20:02:18] Running: bcftools index -f snps.vcf.gz 2>> snps.log
+[20:02:18] Running: bcftools consensus --sample SampleC -f reference/ref.fa -o snps.consensus.fa snps.vcf.gz 2>> snps.log
+[20:02:18] Running: bcftools convert -Oz -o snps.subs.vcf.gz snps.subs.vcf 2>> snps.log
+[20:02:18] Running: bcftools index -f snps.subs.vcf.gz 2>> snps.log
+[20:02:18] Running: bcftools consensus --sample SampleC -f reference/ref.fa -o snps.consensus.subs.fa snps.subs.vcf.gz 2>> snps.log
+[20:02:18] Running: rm -f snps.subs.vcf.gz snps.subs.vcf.gz.csi snps.subs.vcf.gz.tbi 2>> snps.log
+[20:02:18] Generating reference aligned/masked FASTA relative to reference: snps.aligned.fa
+[20:02:18] Marked 3 heterozygous sites with 'n'
+[20:02:18] Creating extra output files: BED GFF CSV TXT HTML
+[20:02:18] Identified 33 variants.
+[20:02:18] Result folder: SampleC
+[20:02:18] Result files:
+[20:02:18] * SampleC/snps.aligned.fa
+[20:02:18] * SampleC/snps.bam
+[20:02:18] * SampleC/snps.bam.bai
+[20:02:18] * SampleC/snps.bed
+[20:02:18] * SampleC/snps.consensus.fa
+[20:02:18] * SampleC/snps.consensus.subs.fa
+[20:02:18] * SampleC/snps.csv
+[20:02:18] * SampleC/snps.filt.vcf
+[20:02:18] * SampleC/snps.gff
+[20:02:18] * SampleC/snps.html
+[20:02:18] * SampleC/snps.log
+[20:02:18] * SampleC/snps.raw.vcf
+[20:02:18] * SampleC/snps.subs.vcf
+[20:02:18] * SampleC/snps.tab
+[20:02:18] * SampleC/snps.txt
+[20:02:18] * SampleC/snps.vcf
+[20:02:18] * SampleC/snps.vcf.gz
+[20:02:18] * SampleC/snps.vcf.gz.csi
+[20:02:18] Walltime used: 1 seconds
+[20:02:18] Wishing you a life free of homopolymer errors.
+[20:02:18] Done.
+[20:02:17] This is snippy 4.6.0
+[20:02:17] Written by Torsten Seemann
+[20:02:17] Obtained from https://github.com/tseemann/snippy
+[20:02:17] Detected operating system: linux
+[20:02:17] Enabling bundled linux tools.
+[20:02:17] Found bwa - /home/CSCScience.ca/apetkau/miniconda3/envs/snippy/bin/bwa
+[20:02:17] Found bcftools - /home/CSCScience.ca/apetkau/miniconda3/envs/snippy/bin/bcftools
+[20:02:17] Found samtools - /home/CSCScience.ca/apetkau/miniconda3/envs/snippy/bin/samtools
+[20:02:17] Found java - /home/CSCScience.ca/apetkau/miniconda3/envs/snippy/bin/java
+[20:02:17] Found snpEff - /home/CSCScience.ca/apetkau/miniconda3/envs/snippy/bin/snpEff
+[20:02:17] Found samclip - /home/CSCScience.ca/apetkau/miniconda3/envs/snippy/bin/samclip
+[20:02:17] Found seqtk - /home/CSCScience.ca/apetkau/miniconda3/envs/snippy/bin/seqtk
+[20:02:17] Found parallel - /home/CSCScience.ca/apetkau/miniconda3/envs/snippy/bin/parallel
+[20:02:17] Found freebayes - /home/CSCScience.ca/apetkau/miniconda3/envs/snippy/bin/freebayes
+[20:02:17] Found freebayes-parallel - /home/CSCScience.ca/apetkau/miniconda3/envs/snippy/bin/freebayes-parallel
+[20:02:17] Found fasta_generate_regions.py - /home/CSCScience.ca/apetkau/miniconda3/envs/snippy/bin/fasta_generate_regions.py
+[20:02:17] Found vcfstreamsort - /home/CSCScience.ca/apetkau/miniconda3/envs/snippy/bin/vcfstreamsort
+[20:02:17] Found vcfuniq - /home/CSCScience.ca/apetkau/miniconda3/envs/snippy/bin/vcfuniq
+[20:02:17] Found vcffirstheader - /home/CSCScience.ca/apetkau/miniconda3/envs/snippy/bin/vcffirstheader
+[20:02:17] Found gzip - /bin/gzip
+[20:02:17] Found vt - /home/CSCScience.ca/apetkau/miniconda3/envs/snippy/bin/vt
+[20:02:17] Found snippy-vcf_to_tab - /home/CSCScience.ca/apetkau/miniconda3/envs/snippy/bin/snippy-vcf_to_tab
+[20:02:17] Found snippy-vcf_report - /home/CSCScience.ca/apetkau/miniconda3/envs/snippy/bin/snippy-vcf_report
+[20:02:17] Checking version: samtools --version is >= 1.7 - ok, have 1.11
+[20:02:17] Checking version: bcftools --version is >= 1.7 - ok, have 1.11
+[20:02:17] Checking version: freebayes --version is >= 1.1 - ok, have 1.3.2
+[20:02:17] Checking version: snpEff -version is >= 4.3 - ok, have 5.0
+[20:02:17] Checking version: bwa is >= 0.7.12 - ok, have 0.7.17
+[20:02:17] Using reference: /home/CSCScience.ca/apetkau/workspace/thesis-data-simulation/jackalope/small/input/genome.fasta
+[20:02:17] Treating reference as 'fasta' format.
+[20:02:17] Will use 6 CPU cores.
+[20:02:17] Using read file: /home/CSCScience.ca/apetkau/workspace/thesis-data-simulation/jackalope/small/output/SampleA_R1.fq.gz
+[20:02:17] Using read file: /home/CSCScience.ca/apetkau/workspace/thesis-data-simulation/jackalope/small/output/SampleA_R2.fq.gz
+[20:02:17] Creating folder: SampleA
+[20:02:17] Changing working directory: SampleA
+[20:02:17] Creating reference folder: reference
+[20:02:17] Extracting FASTA and GFF from reference.
+[20:02:17] Wrote 1 sequences to ref.fa
+[20:02:17] Wrote 0 features to ref.gff
+[20:02:17] Freebayes will process 11 chunks of 1000 bp, 6 chunks at a time.
+[20:02:17] Using BAM RG (Read Group) ID: SampleA
+[20:02:17] Running: samtools faidx reference/ref.fa 2>> snps.log
+[20:02:17] Running: bwa index reference/ref.fa 2>> snps.log
+[20:02:17] Running: mkdir -p reference/genomes && cp -f reference/ref.fa reference/genomes/ref.fa 2>> snps.log
+[20:02:17] Running: ln -sf reference/ref.fa . 2>> snps.log
+[20:02:17] Running: ln -sf reference/ref.fa.fai . 2>> snps.log
+[20:02:17] Running: mkdir -p reference/ref && gzip -c reference/ref.gff > reference/ref/genes.gff.gz 2>> snps.log
+[20:02:17] Running: bwa mem  -Y -M -R '@RG\tID:SampleA\tSM:SampleA' -t 6 reference/ref.fa /home/CSCScience.ca/apetkau/workspace/thesis-data-simulation/jackalope/small/output/SampleA_R1.fq.gz /home/CSCScience.ca/apetkau/workspace/thesis-data-simulation/jackalope/small/output/SampleA_R2.fq.gz | samclip --max 10 --ref reference/ref.fa.fai | samtools sort -n -l 0 -T /tmp --threads 2 -m 2666M | samtools fixmate -m --threads 2 - - | samtools sort -l 0 -T /tmp --threads 2 -m 2666M | samtools markdup -T /tmp --threads 2 -r -s - - > snps.bam 2>> snps.log
+[M::bwa_idx_load_from_disk] read 0 ALT contigs
+[M::process] read 620 sequences (155000 bp)...
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (0, 310, 0, 0)
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (483, 540, 605)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (239, 849)
+[M::mem_pestat] mean and std.dev: (543.33, 92.84)
+[M::mem_pestat] low and high boundaries for proper pairs: (117, 971)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+[samclip] samclip 0.4.0 by Torsten Seemann (@torstenseemann)
+[samclip] Loading: reference/ref.fa.fai
+[samclip] Found 1 sequences in reference/ref.fa.fai
+[M::mem_process_seqs] Processed 620 reads in 0.259 CPU sec, 0.044 real sec
+[main] Version: 0.7.17-r1188
+[main] CMD: bwa mem -Y -M -R @RG\tID:SampleA\tSM:SampleA -t 6 reference/ref.fa /home/CSCScience.ca/apetkau/workspace/thesis-data-simulation/jackalope/small/output/SampleA_R1.fq.gz /home/CSCScience.ca/apetkau/workspace/thesis-data-simulation/jackalope/small/output/SampleA_R2.fq.gz
+[main] Real time: 0.055 sec; CPU: 0.271 sec
+[samclip] Total SAM records 620, removed 15, allowed 28, passed 605
+[samclip] Header contained 3 lines
+[samclip] Done.
+[bam_sort_core] merging from 0 files and 2 in-memory blocks...
+[bam_sort_core] merging from 0 files and 2 in-memory blocks...
+[20:02:17] Running: samtools index snps.bam 2>> snps.log
+[20:02:17] Running: fasta_generate_regions.py reference/ref.fa.fai 1000 > reference/ref.txt 2>> snps.log
+[20:02:17] Running: freebayes-parallel reference/ref.txt 6 -p 2 -P 0 -C 2 -F 0.05 --min-coverage 10 --min-repeat-entropy 1.0 -q 13 -m 60 --strict-vcf   -f reference/ref.fa snps.bam > snps.raw.vcf 2>> snps.log
+[20:02:18] Running: bcftools view --include 'FMT/GT="1/1" && QUAL>=100 && FMT/DP>=10 && (FMT/AO)/(FMT/DP)>=0' snps.raw.vcf  | vt normalize -r reference/ref.fa - | bcftools annotate --remove '^INFO/TYPE,^INFO/DP,^INFO/RO,^INFO/AO,^INFO/AB,^FORMAT/GT,^FORMAT/DP,^FORMAT/RO,^FORMAT/AO,^FORMAT/QR,^FORMAT/QA,^FORMAT/GL' > snps.filt.vcf 2>> snps.log
+normalize v0.5
+
+options:     input VCF file                                  -
+         [o] output VCF file                                 -
+         [w] sorting window size                             10000
+         [n] no fail on reference inconsistency for non SNPs false
+         [q] quiet                                           false
+         [d] debug                                           false
+         [r] reference FASTA file                            reference/ref.fa
+
+
+stats: biallelic
+          no. left trimmed                      : 3
+          no. right trimmed                     : 18
+          no. left and right trimmed            : 1
+          no. right trimmed and left aligned    : 0
+          no. left aligned                      : 0
+
+       total no. biallelic normalized           : 22
+
+       multiallelic
+          no. left trimmed                      : 0
+          no. right trimmed                     : 0
+          no. left and right trimmed            : 0
+          no. right trimmed and left aligned    : 0
+          no. left aligned                      : 0
+
+       total no. multiallelic normalized        : 0
+
+       total no. variants normalized            : 22
+       total no. variants observed              : 46
+       total no. reference observed             : 0
+
+Time elapsed: 0.00s
+
+[20:02:18] Running: cp snps.filt.vcf snps.vcf 2>> snps.log
+[20:02:18] Running: /home/CSCScience.ca/apetkau/miniconda3/envs/snippy/bin/snippy-vcf_to_tab --gff reference/ref.gff --ref reference/ref.fa --vcf snps.vcf > snps.tab 2>> snps.log
+[20:02:18] Running: /home/CSCScience.ca/apetkau/miniconda3/envs/snippy/bin/snippy-vcf_extract_subs snps.filt.vcf > snps.subs.vcf 2>> snps.log
+[20:02:18] Running: bcftools convert -Oz -o snps.vcf.gz snps.vcf 2>> snps.log
+[20:02:18] Running: bcftools index -f snps.vcf.gz 2>> snps.log
+[20:02:18] Running: bcftools consensus --sample SampleA -f reference/ref.fa -o snps.consensus.fa snps.vcf.gz 2>> snps.log
+[20:02:18] Running: bcftools convert -Oz -o snps.subs.vcf.gz snps.subs.vcf 2>> snps.log
+[20:02:18] Running: bcftools index -f snps.subs.vcf.gz 2>> snps.log
+[20:02:18] Running: bcftools consensus --sample SampleA -f reference/ref.fa -o snps.consensus.subs.fa snps.subs.vcf.gz 2>> snps.log
+[20:02:18] Running: rm -f snps.subs.vcf.gz snps.subs.vcf.gz.csi snps.subs.vcf.gz.tbi 2>> snps.log
+[20:02:18] Generating reference aligned/masked FASTA relative to reference: snps.aligned.fa
+[20:02:18] Marked 3 heterozygous sites with 'n'
+[20:02:18] Creating extra output files: BED GFF CSV TXT HTML
+[20:02:18] Identified 46 variants.
+[20:02:18] Result folder: SampleA
+[20:02:18] Result files:
+[20:02:18] * SampleA/snps.aligned.fa
+[20:02:18] * SampleA/snps.bam
+[20:02:18] * SampleA/snps.bam.bai
+[20:02:18] * SampleA/snps.bed
+[20:02:18] * SampleA/snps.consensus.fa
+[20:02:18] * SampleA/snps.consensus.subs.fa
+[20:02:18] * SampleA/snps.csv
+[20:02:18] * SampleA/snps.filt.vcf
+[20:02:18] * SampleA/snps.gff
+[20:02:18] * SampleA/snps.html
+[20:02:18] * SampleA/snps.log
+[20:02:18] * SampleA/snps.raw.vcf
+[20:02:18] * SampleA/snps.subs.vcf
+[20:02:18] * SampleA/snps.tab
+[20:02:18] * SampleA/snps.txt
+[20:02:18] * SampleA/snps.vcf
+[20:02:18] * SampleA/snps.vcf.gz
+[20:02:18] * SampleA/snps.vcf.gz.csi
+[20:02:18] Walltime used: 1 seconds
+[20:02:18] Questionable SNP? Try the --report option to see the alignments.
+[20:02:18] Done.
+[20:02:17] This is snippy 4.6.0
+[20:02:17] Written by Torsten Seemann
+[20:02:17] Obtained from https://github.com/tseemann/snippy
+[20:02:17] Detected operating system: linux
+[20:02:17] Enabling bundled linux tools.
+[20:02:17] Found bwa - /home/CSCScience.ca/apetkau/miniconda3/envs/snippy/bin/bwa
+[20:02:17] Found bcftools - /home/CSCScience.ca/apetkau/miniconda3/envs/snippy/bin/bcftools
+[20:02:17] Found samtools - /home/CSCScience.ca/apetkau/miniconda3/envs/snippy/bin/samtools
+[20:02:17] Found java - /home/CSCScience.ca/apetkau/miniconda3/envs/snippy/bin/java
+[20:02:17] Found snpEff - /home/CSCScience.ca/apetkau/miniconda3/envs/snippy/bin/snpEff
+[20:02:17] Found samclip - /home/CSCScience.ca/apetkau/miniconda3/envs/snippy/bin/samclip
+[20:02:17] Found seqtk - /home/CSCScience.ca/apetkau/miniconda3/envs/snippy/bin/seqtk
+[20:02:17] Found parallel - /home/CSCScience.ca/apetkau/miniconda3/envs/snippy/bin/parallel
+[20:02:17] Found freebayes - /home/CSCScience.ca/apetkau/miniconda3/envs/snippy/bin/freebayes
+[20:02:17] Found freebayes-parallel - /home/CSCScience.ca/apetkau/miniconda3/envs/snippy/bin/freebayes-parallel
+[20:02:17] Found fasta_generate_regions.py - /home/CSCScience.ca/apetkau/miniconda3/envs/snippy/bin/fasta_generate_regions.py
+[20:02:17] Found vcfstreamsort - /home/CSCScience.ca/apetkau/miniconda3/envs/snippy/bin/vcfstreamsort
+[20:02:17] Found vcfuniq - /home/CSCScience.ca/apetkau/miniconda3/envs/snippy/bin/vcfuniq
+[20:02:17] Found vcffirstheader - /home/CSCScience.ca/apetkau/miniconda3/envs/snippy/bin/vcffirstheader
+[20:02:17] Found gzip - /bin/gzip
+[20:02:17] Found vt - /home/CSCScience.ca/apetkau/miniconda3/envs/snippy/bin/vt
+[20:02:17] Found snippy-vcf_to_tab - /home/CSCScience.ca/apetkau/miniconda3/envs/snippy/bin/snippy-vcf_to_tab
+[20:02:17] Found snippy-vcf_report - /home/CSCScience.ca/apetkau/miniconda3/envs/snippy/bin/snippy-vcf_report
+[20:02:17] Checking version: samtools --version is >= 1.7 - ok, have 1.11
+[20:02:17] Checking version: bcftools --version is >= 1.7 - ok, have 1.11
+[20:02:17] Checking version: freebayes --version is >= 1.1 - ok, have 1.3.2
+[20:02:17] Checking version: snpEff -version is >= 4.3 - ok, have 5.0
+[20:02:17] Checking version: bwa is >= 0.7.12 - ok, have 0.7.17
+[20:02:17] Using reference: /home/CSCScience.ca/apetkau/workspace/thesis-data-simulation/jackalope/small/input/genome.fasta
+[20:02:17] Treating reference as 'fasta' format.
+[20:02:17] Will use 6 CPU cores.
+[20:02:17] Using read file: /home/CSCScience.ca/apetkau/workspace/thesis-data-simulation/jackalope/small/output/SampleB_R1.fq.gz
+[20:02:17] Using read file: /home/CSCScience.ca/apetkau/workspace/thesis-data-simulation/jackalope/small/output/SampleB_R2.fq.gz
+[20:02:17] Creating folder: SampleB
+[20:02:17] Changing working directory: SampleB
+[20:02:17] Creating reference folder: reference
+[20:02:17] Extracting FASTA and GFF from reference.
+[20:02:17] Wrote 1 sequences to ref.fa
+[20:02:17] Wrote 0 features to ref.gff
+[20:02:17] Freebayes will process 11 chunks of 1000 bp, 6 chunks at a time.
+[20:02:17] Using BAM RG (Read Group) ID: SampleB
+[20:02:17] Running: samtools faidx reference/ref.fa 2>> snps.log
+[20:02:17] Running: bwa index reference/ref.fa 2>> snps.log
+[20:02:17] Running: mkdir -p reference/genomes && cp -f reference/ref.fa reference/genomes/ref.fa 2>> snps.log
+[20:02:17] Running: ln -sf reference/ref.fa . 2>> snps.log
+[20:02:17] Running: ln -sf reference/ref.fa.fai . 2>> snps.log
+[20:02:17] Running: mkdir -p reference/ref && gzip -c reference/ref.gff > reference/ref/genes.gff.gz 2>> snps.log
+[20:02:17] Running: bwa mem  -Y -M -R '@RG\tID:SampleB\tSM:SampleB' -t 6 reference/ref.fa /home/CSCScience.ca/apetkau/workspace/thesis-data-simulation/jackalope/small/output/SampleB_R1.fq.gz /home/CSCScience.ca/apetkau/workspace/thesis-data-simulation/jackalope/small/output/SampleB_R2.fq.gz | samclip --max 10 --ref reference/ref.fa.fai | samtools sort -n -l 0 -T /tmp --threads 2 -m 2666M | samtools fixmate -m --threads 2 - - | samtools sort -l 0 -T /tmp --threads 2 -m 2666M | samtools markdup -T /tmp --threads 2 -r -s - - > snps.bam 2>> snps.log
+[M::bwa_idx_load_from_disk] read 0 ALT contigs
+[M::process] read 588 sequences (147000 bp)...
+[M::mem_pestat] # candidate unique pairs for (FF, FR, RF, RR): (0, 294, 0, 0)
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (481, 547, 615)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (213, 883)
+[M::mem_pestat] mean and std.dev: (550.61, 102.02)
+[M::mem_pestat] low and high boundaries for proper pairs: (79, 1017)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+[samclip] samclip 0.4.0 by Torsten Seemann (@torstenseemann)
+[samclip] Loading: reference/ref.fa.fai
+[samclip] Found 1 sequences in reference/ref.fa.fai
+[M::mem_process_seqs] Processed 588 reads in 0.214 CPU sec, 0.037 real sec
+[main] Version: 0.7.17-r1188
+[main] CMD: bwa mem -Y -M -R @RG\tID:SampleB\tSM:SampleB -t 6 reference/ref.fa /home/CSCScience.ca/apetkau/workspace/thesis-data-simulation/jackalope/small/output/SampleB_R1.fq.gz /home/CSCScience.ca/apetkau/workspace/thesis-data-simulation/jackalope/small/output/SampleB_R2.fq.gz
+[main] Real time: 0.048 sec; CPU: 0.225 sec
+[samclip] Total SAM records 588, removed 8, allowed 31, passed 580
+[samclip] Header contained 3 lines
+[samclip] Done.
+[bam_sort_core] merging from 0 files and 2 in-memory blocks...
+[bam_sort_core] merging from 0 files and 2 in-memory blocks...
+[20:02:17] Running: samtools index snps.bam 2>> snps.log
+[20:02:17] Running: fasta_generate_regions.py reference/ref.fa.fai 1000 > reference/ref.txt 2>> snps.log
+[20:02:17] Running: freebayes-parallel reference/ref.txt 6 -p 2 -P 0 -C 2 -F 0.05 --min-coverage 10 --min-repeat-entropy 1.0 -q 13 -m 60 --strict-vcf   -f reference/ref.fa snps.bam > snps.raw.vcf 2>> snps.log
+[20:02:18] Running: bcftools view --include 'FMT/GT="1/1" && QUAL>=100 && FMT/DP>=10 && (FMT/AO)/(FMT/DP)>=0' snps.raw.vcf  | vt normalize -r reference/ref.fa - | bcftools annotate --remove '^INFO/TYPE,^INFO/DP,^INFO/RO,^INFO/AO,^INFO/AB,^FORMAT/GT,^FORMAT/DP,^FORMAT/RO,^FORMAT/AO,^FORMAT/QR,^FORMAT/QA,^FORMAT/GL' > snps.filt.vcf 2>> snps.log
+normalize v0.5
+
+options:     input VCF file                                  -
+         [o] output VCF file                                 -
+         [w] sorting window size                             10000
+         [n] no fail on reference inconsistency for non SNPs false
+         [q] quiet                                           false
+         [d] debug                                           false
+         [r] reference FASTA file                            reference/ref.fa
+
+
+stats: biallelic
+          no. left trimmed                      : 4
+          no. right trimmed                     : 22
+          no. left and right trimmed            : 1
+          no. right trimmed and left aligned    : 0
+          no. left aligned                      : 0
+
+       total no. biallelic normalized           : 27
+
+       multiallelic
+          no. left trimmed                      : 0
+          no. right trimmed                     : 0
+          no. left and right trimmed            : 0
+          no. right trimmed and left aligned    : 0
+          no. left aligned                      : 0
+
+       total no. multiallelic normalized        : 0
+
+       total no. variants normalized            : 27
+       total no. variants observed              : 50
+       total no. reference observed             : 0
+
+Time elapsed: 0.00s
+
+[20:02:18] Running: cp snps.filt.vcf snps.vcf 2>> snps.log
+[20:02:18] Running: /home/CSCScience.ca/apetkau/miniconda3/envs/snippy/bin/snippy-vcf_to_tab --gff reference/ref.gff --ref reference/ref.fa --vcf snps.vcf > snps.tab 2>> snps.log
+[20:02:18] Running: /home/CSCScience.ca/apetkau/miniconda3/envs/snippy/bin/snippy-vcf_extract_subs snps.filt.vcf > snps.subs.vcf 2>> snps.log
+[20:02:18] Running: bcftools convert -Oz -o snps.vcf.gz snps.vcf 2>> snps.log
+[20:02:18] Running: bcftools index -f snps.vcf.gz 2>> snps.log
+[20:02:18] Running: bcftools consensus --sample SampleB -f reference/ref.fa -o snps.consensus.fa snps.vcf.gz 2>> snps.log
+[20:02:18] Running: bcftools convert -Oz -o snps.subs.vcf.gz snps.subs.vcf 2>> snps.log
+[20:02:18] Running: bcftools index -f snps.subs.vcf.gz 2>> snps.log
+[20:02:18] Running: bcftools consensus --sample SampleB -f reference/ref.fa -o snps.consensus.subs.fa snps.subs.vcf.gz 2>> snps.log
+[20:02:18] Running: rm -f snps.subs.vcf.gz snps.subs.vcf.gz.csi snps.subs.vcf.gz.tbi 2>> snps.log
+[20:02:18] Generating reference aligned/masked FASTA relative to reference: snps.aligned.fa
+[20:02:18] Marked 2 heterozygous sites with 'n'
+[20:02:18] Creating extra output files: BED GFF CSV TXT HTML
+[20:02:18] Identified 50 variants.
+[20:02:18] Result folder: SampleB
+[20:02:18] Result files:
+[20:02:18] * SampleB/snps.aligned.fa
+[20:02:18] * SampleB/snps.bam
+[20:02:18] * SampleB/snps.bam.bai
+[20:02:18] * SampleB/snps.bed
+[20:02:18] * SampleB/snps.consensus.fa
+[20:02:18] * SampleB/snps.consensus.subs.fa
+[20:02:18] * SampleB/snps.csv
+[20:02:18] * SampleB/snps.filt.vcf
+[20:02:18] * SampleB/snps.gff
+[20:02:18] * SampleB/snps.html
+[20:02:18] * SampleB/snps.log
+[20:02:18] * SampleB/snps.raw.vcf
+[20:02:18] * SampleB/snps.subs.vcf
+[20:02:18] * SampleB/snps.tab
+[20:02:18] * SampleB/snps.txt
+[20:02:18] * SampleB/snps.vcf
+[20:02:18] * SampleB/snps.vcf.gz
+[20:02:18] * SampleB/snps.vcf.gz.csi
+[20:02:18] Walltime used: 1 seconds
+[20:02:18] Wishing you a life free of homopolymer errors.
+[20:02:18] Done.
+
+~/workspace/thesis-data-simulation/jackalope/small

@@ -1,0 +1,32 @@
+~/workspace/thesis-data-simulation/jackalope/small/phylogeny ~/workspace/thesis-data-simulation/jackalope/small
+This is snippy-core 4.6.0
+Obtained from http://github.com/tseemann/snippy
+Enabling bundled tools for linux
+Found any2fasta - /home/CSCScience.ca/apetkau/miniconda3/envs/snippy/bin/any2fasta
+Found samtools - /home/CSCScience.ca/apetkau/miniconda3/envs/snippy/bin/samtools
+Found minimap2 - /home/CSCScience.ca/apetkau/miniconda3/envs/snippy/bin/minimap2
+Found bedtools - /home/CSCScience.ca/apetkau/miniconda3/envs/snippy/bin/bedtools
+Found snp-sites - /home/CSCScience.ca/apetkau/miniconda3/envs/snippy/bin/snp-sites
+Saving reference FASTA: core.ref.fa
+This is any2fasta 0.4.2
+Opening 'SampleA/ref.fa'
+Detected FASTA format
+Read 88 lines from 'SampleA/ref.fa'
+Wrote 1 sequences from FASTA file.
+Processed 1 files.
+Done.
+Loaded 1 sequences totalling 5180 bp.
+Will mask 0 regions totalling 0 bp ~ 0.00%
+0	SampleA	snp=27	del=24	ins=30	het=3	unaligned=47
+1	SampleB	snp=28	del=42	ins=34	het=2	unaligned=102
+2	SampleC	snp=18	del=27	ins=19	het=3	unaligned=52
+Opening: core.tab
+Opening: core.vcf
+Processing contig: reference
+Generating core.full.aln
+Creating TSV file: core.txt
+Running: snp-sites -c -o core.aln core.full.aln
+This analysis is totally hard-core!
+Done.
+
+~/workspace/thesis-data-simulation/jackalope/small

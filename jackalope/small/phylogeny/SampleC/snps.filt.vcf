@@ -1,0 +1,60 @@
+##fileformat=VCFv4.2
+##FILTER=<ID=PASS,Description="All filters passed">
+##fileDate=20210124
+##source=freeBayes v1.3.2-dirty
+##reference=reference/ref.fa
+##contig=<ID=reference,length=5180>
+##phasing=none
+##commandline="freebayes -p 2 -P 0 -C 2 -F 0.05 --min-coverage 10 --min-repeat-entropy 1.0 -q 13 -m 60 --strict-vcf -f reference/ref.fa snps.bam --region reference:0-1000"
+##INFO=<ID=DP,Number=1,Type=Integer,Description="Total read depth at the locus">
+##INFO=<ID=RO,Number=1,Type=Integer,Description="Count of full observations of the reference haplotype.">
+##INFO=<ID=AO,Number=A,Type=Integer,Description="Count of full observations of this alternate haplotype.">
+##INFO=<ID=QR,Number=1,Type=Integer,Description="Reference allele quality sum in phred">
+##INFO=<ID=QA,Number=A,Type=Integer,Description="Alternate allele quality sum in phred">
+##INFO=<ID=AB,Number=A,Type=Float,Description="Allele balance at heterozygous sites: a number between 0 and 1 representing the ratio of reads showing the reference allele to all reads, considering only reads from individuals called as heterozygous">
+##INFO=<ID=TYPE,Number=A,Type=String,Description="The type of allele, either snp, mnp, ins, del, or complex.">
+##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">
+##FORMAT=<ID=GL,Number=G,Type=Float,Description="Genotype Likelihood, log10-scaled likelihoods of the data given the called genotype for each possible genotype generated from the reference and alternate alleles given the sample ploidy">
+##FORMAT=<ID=DP,Number=1,Type=Integer,Description="Read Depth">
+##FORMAT=<ID=RO,Number=1,Type=Integer,Description="Reference allele observation count">
+##FORMAT=<ID=QR,Number=1,Type=Integer,Description="Sum of quality of the reference observations">
+##FORMAT=<ID=AO,Number=A,Type=Integer,Description="Alternate allele observation count">
+##FORMAT=<ID=QA,Number=A,Type=Integer,Description="Sum of quality of the alternate observations">
+##bcftools_viewVersion=1.11+htslib-1.11
+##bcftools_viewCommand=view --include 'FMT/GT="1/1" && QUAL>=100 && FMT/DP>=10 && (FMT/AO)/(FMT/DP)>=0' snps.raw.vcf; Date=Sun Jan 24 20:02:18 2021
+##bcftools_annotateVersion=1.11+htslib-1.11
+##bcftools_annotateCommand=annotate --remove ^INFO/TYPE,^INFO/DP,^INFO/RO,^INFO/AO,^INFO/AB,^FORMAT/GT,^FORMAT/DP,^FORMAT/RO,^FORMAT/AO,^FORMAT/QR,^FORMAT/QA,^FORMAT/GL; Date=Sun Jan 24 20:02:18 2021
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	SampleC
+reference	347	.	TGAAG	T	242.063	.	AB=0;AO=11;DP=11;QA=317;QR=0;RO=0;TYPE=del	GT:DP:RO:QR:AO:QA:GL	1/1:11:0:0:11:317:-28.811,-3.31133,0
+reference	619	.	G	C	887.894	.	AB=0;AO=31;DP=33;QA=1034;QR=23;RO=1;TYPE=snp	GT:DP:RO:QR:AO:QA:GL	1/1:33:1:23:31:1034:-91.053,-7.55304,0
+reference	839	.	C	G	799.559	.	AB=0;AO=26;DP=26;QA=916;QR=0;RO=0;TYPE=snp	GT:DP:RO:QR:AO:QA:GL	1/1:26:0:0:26:916:-82.7412,-7.82678,0
+reference	866	.	GCCAGATCC	G	430.157	.	AB=0;AO=17;DP=17;QA=509;QR=0;RO=0;TYPE=del	GT:DP:RO:QR:AO:QA:GL	1/1:17:0:0:17:509:-46.0983,-5.11751,0
+reference	1056	.	G	GC	539.574	.	AB=0;AO=19;DP=20;QA=651;QR=26;RO=1;TYPE=ins	GT:DP:RO:QR:AO:QA:GL	1/1:20:1:26:19:651:-56.3035,-3.42077,0
+reference	1135	.	CCT	C	613.64	.	AB=0;AO=23;DP=24;QA=718;QR=0;RO=0;TYPE=del	GT:DP:RO:QR:AO:QA:GL	1/1:24:0:0:23:718:-64.7749,-6.92369,0
+reference	1184	.	A	G	1065.75	.	AB=0;AO=36;DP=36;QA=1212;QR=0;RO=0;TYPE=snp	GT:DP:RO:QR:AO:QA:GL	1/1:36:0:0:36:1212:-109.354,-10.8371,0
+reference	1270	.	CTT	C	794.904	.	AB=0;AO=30;DP=30;QA=911;QR=0;RO=0;TYPE=del	GT:DP:RO:QR:AO:QA:GL	1/1:30:0:0:30:911:-82.2638,-9.0309,0
+reference	1347	.	C	A	992.002	.	AB=0;AO=33;DP=33;QA=1132;QR=0;RO=0;TYPE=snp	GT:DP:RO:QR:AO:QA:GL	1/1:33:0:0:33:1132:-102.161,-9.93399,0
+reference	1440	.	G	GCCAC	521.017	.	AB=0;AO=22;DP=25;QA=609;QR=0;RO=0;TYPE=ins	GT:DP:RO:QR:AO:QA:GL	1/1:25:0:0:22:609:-54.8435,-6.62266,0
+reference	1815	.	CAA	C	698.468	.	AB=0;AO=28;DP=28;QA=804;QR=0;RO=0;TYPE=del	GT:DP:RO:QR:AO:QA:GL	1/1:28:0:0:28:804:-72.6247,-8.42884,0
+reference	1984	.	GTGATTG	TTGA	839.343	.	AB=0;AO=28;DP=29;QA=966;QR=0;RO=0;TYPE=complex	GT:DP:RO:QR:AO:QA:GL	1/1:29:0:0:28:966:-86.9536,-8.42884,0
+reference	2480	.	TG	T	755.507	.	AB=0;AO=26;DP=26;QA=870;QR=0;RO=0;TYPE=del	GT:DP:RO:QR:AO:QA:GL	1/1:26:0:0:26:870:-78.5957,-7.82678,0
+reference	2539	.	A	AG	848.517	.	AB=0;AO=30;DP=31;QA=988;QR=0;RO=0;TYPE=ins	GT:DP:RO:QR:AO:QA:GL	1/1:31:0:0:30:988:-88.8518,-9.0309,0
+reference	3008	.	GA	G	772.18	.	AB=0;AO=28;DP=31;QA=892;QR=0;RO=0;TYPE=del	GT:DP:RO:QR:AO:QA:GL	1/1:31:0:0:28:892:-80.3,-8.42884,0
+reference	3063	.	A	ATGCAGC	509.423	.	AB=0;AO=20;DP=22;QA=602;QR=0;RO=0;TYPE=ins	GT:DP:RO:QR:AO:QA:GL	1/1:22:0:0:20:602:-54.125,-6.0206,0
+reference	3263	.	A	G	956.813	.	AB=0;AO=32;DP=32;QA=1089;QR=0;RO=0;TYPE=snp	GT:DP:RO:QR:AO:QA:GL	1/1:32:0:0:32:1089:-98.2961,-9.63296,0
+reference	3337	.	C	G	824.396	.	AB=0;AO=28;DP=28;QA=963;QR=0;RO=0;TYPE=snp	GT:DP:RO:QR:AO:QA:GL	1/1:28:0:0:28:963:-86.9614,-8.42884,0
+reference	3522	.	G	A	878.033	.	AB=0;AO=29;DP=29;QA=1001;QR=0;RO=0;TYPE=snp	GT:DP:RO:QR:AO:QA:GL	1/1:29:0:0:29:1001:-90.382,-8.72987,0
+reference	3526	.	T	TA	834.503	.	AB=0;AO=28;DP=32;QA=959;QR=0;RO=0;TYPE=ins	GT:DP:RO:QR:AO:QA:GL	1/1:32:0:0:28:959:-86.3483,-8.42884,0
+reference	3642	.	A	G	867.05	.	AB=0;AO=30;DP=30;QA=991;QR=0;RO=0;TYPE=snp	GT:DP:RO:QR:AO:QA:GL	1/1:30:0:0:30:991:-89.4794,-9.0309,0
+reference	3733	.	A	AAATC	555.394	.	AB=0;AO=22;DP=22;QA=654;QR=0;RO=0;TYPE=ins	GT:DP:RO:QR:AO:QA:GL	1/1:22:0:0:22:654:-59.133,-6.62266,0
+reference	3762	.	A	G	788.496	.	AB=0;AO=26;DP=26;QA=903;QR=0;RO=0;TYPE=snp	GT:DP:RO:QR:AO:QA:GL	1/1:26:0:0:26:903:-81.5691,-7.82678,0
+reference	3846	.	T	A	1195.41	.	AB=0;AO=40;DP=40;QA=1360;QR=0;RO=0;TYPE=snp	GT:DP:RO:QR:AO:QA:GL	1/1:40:0:0:40:1360:-122.673,-12.0412,0
+reference	3897	.	GCGCA	G	559.342	.	AB=0;AO=23;DP=23;QA=654;QR=0;RO=0;TYPE=del	GT:DP:RO:QR:AO:QA:GL	1/1:23:0:0:23:654:-59.1263,-6.92369,0
+reference	4036	.	T	A	954.044	.	AB=0;AO=32;DP=32;QA=1102;QR=0;RO=0;TYPE=snp	GT:DP:RO:QR:AO:QA:GL	1/1:32:0:0:32:1102:-99.4665,-9.63296,0
+reference	4245	.	G	A	868.53	.	AB=0;AO=29;DP=29;QA=995;QR=0;RO=0;TYPE=snp	GT:DP:RO:QR:AO:QA:GL	1/1:29:0:0:29:995:-89.8403,-8.72987,0
+reference	4585	.	T	C	963.567	.	AB=0;AO=32;DP=32;QA=1106;QR=0;RO=0;TYPE=snp	GT:DP:RO:QR:AO:QA:GL	1/1:32:0:0:32:1106:-99.8252,-9.63296,0
+reference	4628	.	A	G	1048.61	.	AB=0;AO=33;DP=33;QA=1193;QR=0;RO=0;TYPE=snp	GT:DP:RO:QR:AO:QA:GL	1/1:33:0:0:33:1193:-107.667,-9.93399,0
+reference	4644	.	G	A	1075.06	.	AB=0;AO=34;DP=34;QA=1226;QR=0;RO=0;TYPE=snp	GT:DP:RO:QR:AO:QA:GL	1/1:34:0:0:34:1226:-110.631,-10.235,0
+reference	4693	.	C	CGA	703.012	.	AB=0;AO=25;DP=27;QA=818;QR=0;RO=0;TYPE=ins	GT:DP:RO:QR:AO:QA:GL	1/1:27:0:0:25:818:-73.614,-7.52575,0
+reference	4765	.	A	G	936.272	.	AB=0;AO=31;DP=31;QA=1079;QR=0;RO=0;TYPE=snp	GT:DP:RO:QR:AO:QA:GL	1/1:31:0:0:31:1079:-97.4029,-9.33193,0
+reference	4975	.	T	C	452.522	.	AB=0;AO=16;DP=16;QA=573;QR=0;RO=0;TYPE=snp	GT:DP:RO:QR:AO:QA:GL	1/1:16:0:0:16:573:-51.8946,-4.81648,0

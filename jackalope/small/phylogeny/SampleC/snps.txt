@@ -1,0 +1,10 @@
+DateTime	2021-01-24T20:02:17
+ReadFiles	/home/CSCScience.ca/apetkau/workspace/thesis-data-simulation/jackalope/small/output/SampleC_R1.fq.gz /home/CSCScience.ca/apetkau/workspace/thesis-data-simulation/jackalope/small/output/SampleC_R2.fq.gz
+Reference	/home/CSCScience.ca/apetkau/workspace/thesis-data-simulation/jackalope/small/input/genome.fasta
+ReferenceSize	5180
+Software	snippy 4.6.0
+Variant-COMPLEX	1
+Variant-DEL	8
+Variant-INS	7
+Variant-SNP	17
+VariantTotal	33
