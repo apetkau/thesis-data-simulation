@@ -3,3 +3,4 @@
 /dist
 /output
 /phylogeny
+*.fq.gz
