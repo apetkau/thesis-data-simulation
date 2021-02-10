@@ -1,3 +1,6 @@
 [submodule "treestoreads/TreeToReads"]
 	path = treestoreads/TreeToReads
 	url = https://github.com/snacktavish/TreeToReads.git
+[submodule "thesis-index"]
+	path = thesis-index
+	url = https://github.com/apetkau/thesis-index.git
