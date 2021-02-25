@@ -4,3 +4,6 @@
 [submodule "thesis-index"]
 	path = thesis-index
 	url = https://github.com/apetkau/thesis-index.git
+[submodule "jackalope/salmonella/test-load-vcf/dependencies/rocksdb"]
+	path = jackalope/salmonella/test-load-vcf/dependencies/rocksdb
+	url = https://github.com/facebook/rocksdb.git
