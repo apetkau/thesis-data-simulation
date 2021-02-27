@@ -12,3 +12,8 @@ dependencies:
   - r-ape
   - r-phytools
   - r-phangorn
+  - fasttree
+  - pymongo
+  - bcftools
+  - matplotlib
+prefix: /home/CSCScience.ca/apetkau/miniconda3/envs/datasimulation
