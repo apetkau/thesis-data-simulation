@@ -1,0 +1,2 @@
+database_connection: 'mysql+pymysql://test:test@localhost/thesis_before_refactor?charset=utf8mb4'
+database_dir: db-before-refactor
