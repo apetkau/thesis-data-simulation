@@ -1,0 +1,5 @@
+/home/apetkau/workspace/thesis-data-simulation/jackalope/small/input/genome.fasta /home/apetkau/workspace/thesis-data-simulation/jackalope/small/test-assemblies/SampleC.fasta
+NUCMER
+>reference reference 5180 5180
+1 5180 1 5180 18 18 0
+0
